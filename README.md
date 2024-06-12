@@ -1,7 +1,7 @@
 # 3D Point Depth Projection
 
 Is an After Effects tool that allows you to quickly extract 3d coordinates and place any object to it.  
-Depth map and 3d camera data are required.  
+Requirement: Depth map and 3d camera data are required.  
 
 ## Credits
 Script: `shy_rikki` (discord)  
