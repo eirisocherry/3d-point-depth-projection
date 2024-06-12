@@ -27,7 +27,7 @@ Blender: soon
 Unreal Engine: soon  
 5. Import a depth map of your composition.    
 6. Select the depth map and setup a projection by pressing **[+]** button.  
-7. Adjust **'Depth Settings':**  
+7. Adjust **'Depth settings':**  
 **'Black is Near'** check it if a black color is near on your depth map, uncheck if it's not.  
 **'Far'** the farthest depth point value:  
 CSGO (if you use my cfgs): `4096`  
