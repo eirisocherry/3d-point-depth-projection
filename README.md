@@ -87,6 +87,9 @@ https://github.com/eirisocherry/3d-point-depth-projection/assets/115040224/50e27
 
 ### Merge Depth
 To merge depth layers, select them and press [Merge Depth] button.  
+It will create a 'Merged Depth' solid with adjustment layer which uses 'Merged Depth' solid as a luma mask.  
+
+Since 'Merged Depth' uses links to the depth layers you've selected, all the changes you make for them will be automatically applied to 'Merged Depth'.  
 
 https://github.com/eirisocherry/3d-point-depth-projection/assets/115040224/fe1b7bed-5818-46f4-a24a-f0c6a98471ea  
 
