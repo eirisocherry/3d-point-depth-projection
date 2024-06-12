@@ -54,7 +54,7 @@ When you project 'SimpleLight' it makes a dublicate of your 'Depth for Projectio
 **'Light Range'** range of the light  
 
 `[x] SL Adj` Adjustment Layer settings:  
-It uses SimpleLight `[x] SL` as luma mask  
+It uses SimpleLight `[x] SL` as a luma mask  
 **'CC Toner'** allows you change the color of the light  
 **'Exposure'** allows you to change the brightness of the light  
 
