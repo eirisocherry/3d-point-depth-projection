@@ -4,9 +4,9 @@ Is an After Effects tool that allows you to quickly extract 3d coordinates and p
 Requirement: Depth map and 3d camera data are required.  
 
 ## Credits
+Plugin & expressions: `fadaaszhi` (discord)  
 Script: `shy_rikki` (discord)  
 https://www.youtube.com/@shy_rikki  
-Plugin & expressions: `fadaaszhi` (discord)  
 
 ## Installation
 1. Download the tool: https://github.com/eirisocherry/3d-point-depth-projection/releases  
