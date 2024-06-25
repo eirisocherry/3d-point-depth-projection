@@ -1,11 +1,12 @@
 # 3D Point Depth Projection
 
 Is an After Effects tool that allows you to quickly extract 3d coordinates and place any object to it.  
+Requirement: Depth map and 3d camera data are required.  
 
 ## Credits
+Plugin & expressions: `fadaaszhi` (discord)  
 Script: `shy_rikki` (discord)  
 https://www.youtube.com/@shy_rikki  
-Plugin & expressions: `fadaaszhi` (discord)  
 
 ## Installation
 1. Download the tool: https://github.com/eirisocherry/3d-point-depth-projection/releases  
@@ -54,7 +55,7 @@ When you project 'SimpleLight' it makes a dublicate of your 'Depth for Projectio
 **'Light Range'** range of the light  
 
 `[x] SL Adj` Adjustment Layer settings:  
-It uses SimpleLight `[x] SL` as luma mask  
+It uses SimpleLight `[x] SL` as a luma mask  
 **'CC Toner'** allows you change the color of the light  
 **'Exposure'** allows you to change the brightness of the light  
 
@@ -87,6 +88,9 @@ https://github.com/eirisocherry/3d-point-depth-projection/assets/115040224/50e27
 
 ### Merge Depth
 To merge depth layers, select them and press [Merge Depth] button.  
+It will create a 'Merged Depth' solid with adjustment layer which uses 'Merged Depth' solid as a luma mask.  
+
+Since 'Merged Depth' uses links to the depth layers you've selected, all the changes you make for them will be automatically applied to 'Merged Depth'.  
 
 https://github.com/eirisocherry/3d-point-depth-projection/assets/115040224/fe1b7bed-5818-46f4-a24a-f0c6a98471ea  
 
