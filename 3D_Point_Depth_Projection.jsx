@@ -231,7 +231,7 @@ function DepthProjection(thisObj) {
         projectedLayer.threeDLayer = true;
         projectedLayer.transform.scale.setValue([100, 100, 100]);
         projectedLayer.transform.opacity.setValue(60);
-        projectedLayer.property("Material Options").property("Accepts Lights").setValue(0);
+        projectedLayer.property("ADBE Material Options Group").property("ADBE Accepts Lights").setValue(0);
         projectedLayer.startTime = mainLayer.startTime;
         projectedLayer.inPoint = mainLayer.inPoint;
         projectedLayer.outPoint = mainLayer.outPoint;
@@ -391,8 +391,8 @@ function DepthProjection(thisObj) {
         var projectedOpacityValue = projectionLayer.transform.opacity.valueAtTime(comp.time, false);
         var projectedLayerWidth = projectionLayer.width;
         var projectedLayerHeight = projectionLayer.height;
-        var projectedAcceptsLights = projectionLayer.property("Material Options").property("Accepts Lights").value;
-        var mainLayerEffect = mainLayer.property("Effects").property("3D Point Depth Projection");
+        var projectedAcceptsLights = projectionLayer.property("ADBE Material Options Group").property("ADBE Accepts Lights").value;
+        var mainLayerEffect = mainLayer.property("ADBE Effect Parade").property("3D Point Depth Projection");
         var randomColorValue = mainLayerEffect.property("Random color").value;
         var ifRandomIsDisabledValue = mainLayerEffect.property("If random is disabled").value;
         var exposureValue = mainLayerEffect.property("Exposure").value;
@@ -471,13 +471,13 @@ function DepthProjection(thisObj) {
                 newAdjustmentLayer.inPoint = mainLayer.inPoint;
                 newAdjustmentLayer.outPoint = mainLayer.outPoint;
                 newAdjustmentLayer.Effects.addProperty("CC Toner");
-                newAdjustmentLayer.Effects("CC Toner").property("Midtones").setValue(randomColorValue ? [getRandomNumber(0.5, 1), getRandomNumber(0.5, 1), getRandomNumber(0.5, 1)] : ifRandomIsDisabledValue);
-                newAdjustmentLayer.Effects("CC Toner").property("Blend w. Original").setValue(0.5);
+                newAdjustmentLayer.Effects("CC Toner").property("CC Toner-0002").setValue(randomColorValue ? [getRandomNumber(0.5, 1), getRandomNumber(0.5, 1), getRandomNumber(0.5, 1)] : ifRandomIsDisabledValue); //midtones
+                newAdjustmentLayer.Effects("CC Toner").property("CC Toner-0004").setValue(0.5); //blend w original
                 newAdjustmentLayer.Effects.addProperty("ADBE Exposure");
-                newAdjustmentLayer.Effects("ADBE Exposure").property("Exposure").setValue(exposureValue);
+                newAdjustmentLayer.Effects("ADBE Exposure").property("ADBE Exposure-0003").setValue(exposureValue); //exposure
                 newAdjustmentLayer.label = labelColor;
 
-                var mainLayerEffect = mainLayer.property("Effects").property("3D Point Depth Projection");
+                var mainLayerEffect = mainLayer.property("ADBE Effect Parade").property("3D Point Depth Projection");
                 var blackIsNearValue = mainLayerEffect.property("Black is Near").value;
                 var farValue = mainLayerEffect.property("Far").value;
 
@@ -485,7 +485,7 @@ function DepthProjection(thisObj) {
                 simpleLightLayer.name = simpleLightLayerName;
                 simpleLightLayer.moveToBeginning();
                 simpleLightLayer.enabled = false;
-                simpleLightLayer.property("Effects").property("3D Point Depth Projection").remove();
+                simpleLightLayer.property("ADBE Effect Parade").property("3D Point Depth Projection").remove();
                 simpleLightLayer.label = labelColor;
 
                 // Set track matte depends on AE version 
@@ -537,7 +537,7 @@ function DepthProjection(thisObj) {
                 break;
 
             case 'Keyframes':
-                var mainLayerEffect = mainLayer.property("Effects").property("3D Point Depth Projection");
+                var mainLayerEffect = mainLayer.property("ADBE Effect Parade").property("3D Point Depth Projection");
                 mainLayerEffect.property("Position").setValueAtTime(comp.time, projectedPositionValue);
                 mainLayerEffect.property("X Rotation").setValueAtTime(comp.time, projectedOrientationValue[0]);
                 mainLayerEffect.property("Y Rotation").setValueAtTime(comp.time, projectedOrientationValue[1]);
@@ -559,7 +559,7 @@ function DepthProjection(thisObj) {
                 newSolid.transform.orientation.setValue(projectedOrientationValue);
                 newSolid.transform.scale.setValue(projectedScaleValue);
                 newSolid.transform.opacity.setValue(projectedOpacityValue);
-                newSolid.property("Material Options").property("Accepts Lights").setValue(projectedAcceptsLights);
+                newSolid.property("ADBE Material Options Group").property("ADBE Accepts Lights").setValue(projectedAcceptsLights);
                 newSolid.startTime = mainLayer.startTime;
                 newSolid.inPoint = mainLayer.inPoint;
                 newSolid.outPoint = mainLayer.outPoint;
@@ -669,7 +669,7 @@ function DepthProjection(thisObj) {
 
         app.beginUndoGroup("Delete setup");
 
-        mainLayer.property("Effects").property("3D Point Depth Projection").remove();
+        mainLayer.property("ADBE Effect Parade").property("3D Point Depth Projection").remove();
         var mainLayerName = mainLayer.name;
         var count = mainLayerName.slice(21);
         var projectedLayerName = "Projected Solid" + (count > 1 ? " " + count : "");
@@ -1069,10 +1069,10 @@ function DepthProjection(thisObj) {
         newAdjustmentLayer.adjustmentLayer = true;
         newAdjustmentLayer.name = adjustmentLayerName;
         newAdjustmentLayer.Effects.addProperty("CC Toner");
-        newAdjustmentLayer.Effects("CC Toner").property("Midtones").setValue([getRandomNumber(0.5, 1), getRandomNumber(0.5, 1), getRandomNumber(0.5, 1)]);
-        newAdjustmentLayer.Effects("CC Toner").property("Blend w. Original").setValue(0.5);
+        newAdjustmentLayer.Effects("CC Toner").property("CC Toner-0002").setValue([getRandomNumber(0.5, 1), getRandomNumber(0.5, 1), getRandomNumber(0.5, 1)]); //midtones
+        newAdjustmentLayer.Effects("CC Toner").property("CC Toner-0004").setValue(0.5); //blend w original
         newAdjustmentLayer.Effects.addProperty("ADBE Exposure");
-        newAdjustmentLayer.Effects("ADBE Exposure").property("Exposure").setValue(4);
+        newAdjustmentLayer.Effects("ADBE Exposure").property("ADBE Exposure-0003").setValue(4); //exposure
 
         // Create merged depth
         var mergedDepthLayer = comp.layers.addSolid(
@@ -1114,7 +1114,7 @@ function DepthProjection(thisObj) {
         for (var i = 1; i <= selectedLayers.length; i++) {
             var selectedLayer = selectedLayers[i - 1];
             var blendEffectName = (i === 1) ? "Blend" : "Blend " + i;
-            var blendEffect = mergedDepthLayer.property("Effects").property(blendEffectName);
+            var blendEffect = mergedDepthLayer.property("ADBE Effect Parade").property(blendEffectName);
             blendEffect.property("ADBE Blend-0001").setValue(selectedLayer.index);
         }
 
