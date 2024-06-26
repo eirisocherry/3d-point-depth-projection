@@ -1,7 +1,7 @@
 # 3D Point Depth Projection
 
 Is an After Effects tool that allows you to quickly extract 3d coordinates and place any object to it.  
-Requirement: Depth map and 3d camera data are required.  
+Requirement: Depth map and 3d camera data.  
 
 ## Credits
 Plugin & expressions: `fadaaszhi` (discord)  
@@ -23,9 +23,7 @@ https://www.youtube.com/@shy_rikki
 3. The script panel will open. It's dockable.  
 4. Import a 3d camera data.  
 CSGO: https://www.youtube.com/watch?v=78Y_Y-i5h2c  
-COD4: soon  
-Blender: soon  
-Unreal Engine: soon  
+COD4: https://github.com/gmzorz/MVMAETools/blob/main/Support%20Files/Scripts/ScriptUI%20Panels/MVMTools.jsx  
 5. Import a depth map of your composition.    
 6. Select the depth map and setup a projection by pressing **[+]** button.  
 7. Adjust **'Depth settings':**  
