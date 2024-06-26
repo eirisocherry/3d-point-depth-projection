@@ -119,24 +119,24 @@ https://github.com/eirisocherry/3d-point-depth-projection/assets/115040224/094be
 <summary> >>> Link 2d layer to 3d point (useful for flares) </summary>
 <br>
 
-video...
+https://github.com/eirisocherry/3d-point-depth-projection/assets/115040224/f093c228-61f5-40a4-94c1-4842467c6880
 
 <br>
 </details>
 
 
 <details>
-<summary> >>> Make 3d layer always look at camera  </summary>
+<summary> >>> Make 3d layer always look at the camera  </summary>
 <br>
 
-video...
+https://github.com/eirisocherry/3d-point-depth-projection/assets/115040224/c6b44e81-1091-4b16-9b8a-f100702fc917
 
 <br>
 </details>
 
 
 <details>
-<summary> >>> Make 3d layer always look at camera using only Y-rotation </summary>
+<summary> >>> Make 3d layer always look at the camera using only Y-rotation </summary>
 <br>
 
 Y-rotation expression by [Dan Ebberts](https://www.motionscript.com/design-guide/auto-orient-y-only.html):  
@@ -144,6 +144,8 @@ Y-rotation expression by [Dan Ebberts](https://www.motionscript.com/design-guide
 delta = toWorld(anchorPoint) - thisComp.activeCamera.toWorld([0,0,0]);
 radiansToDegrees(Math.atan2(delta[0],delta[2]))
 ```
+
+https://github.com/eirisocherry/3d-point-depth-projection/assets/115040224/9a25ec53-e9d6-4b96-a6c3-418c797aecd3
 
 <br>
 </details>
