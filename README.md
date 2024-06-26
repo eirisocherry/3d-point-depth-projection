@@ -139,7 +139,7 @@ https://github.com/eirisocherry/3d-point-depth-projection/assets/115040224/7460b
 <summary> >>> Make a 3d layer always look at the camera using only Y-rotation </summary>
 <br>
 
-Y-rotation expression by [Dan Ebberts](https://www.motionscript.com/design-guide/auto-orient-y-only.html):  
+Auto-orient Y-rotation only expression by [Dan Ebberts](https://www.motionscript.com/design-guide/auto-orient-y-only.html):  
 ```
 delta = toWorld(anchorPoint) - thisComp.activeCamera.toWorld([0,0,0]);
 radiansToDegrees(Math.atan2(delta[0],delta[2]))
