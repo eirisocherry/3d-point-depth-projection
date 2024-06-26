@@ -119,7 +119,7 @@ https://github.com/eirisocherry/3d-point-depth-projection/assets/115040224/094be
 <summary> >>> Link 2d layer to 3d point (useful for flares) </summary>
 <br>
 
-https://github.com/eirisocherry/3d-point-depth-projection/assets/115040224/f093c228-61f5-40a4-94c1-4842467c6880
+https://github.com/eirisocherry/3d-point-depth-projection/assets/115040224/f093c228-61f5-40a4-94c1-4842467c6880  
 
 <br>
 </details>
@@ -129,7 +129,7 @@ https://github.com/eirisocherry/3d-point-depth-projection/assets/115040224/f093c
 <summary> >>> Make 3d layer always look at the camera  </summary>
 <br>
 
-https://github.com/eirisocherry/3d-point-depth-projection/assets/115040224/c6b44e81-1091-4b16-9b8a-f100702fc917
+https://github.com/eirisocherry/3d-point-depth-projection/assets/115040224/7460b84c-379d-428f-9b1a-8d32f42298d0  
 
 <br>
 </details>
@@ -145,7 +145,7 @@ delta = toWorld(anchorPoint) - thisComp.activeCamera.toWorld([0,0,0]);
 radiansToDegrees(Math.atan2(delta[0],delta[2]))
 ```
 
-https://github.com/eirisocherry/3d-point-depth-projection/assets/115040224/9a25ec53-e9d6-4b96-a6c3-418c797aecd3
+https://github.com/eirisocherry/3d-point-depth-projection/assets/115040224/e190e9c3-2070-4db1-8051-539cdf0e682b  
 
 <br>
 </details>
