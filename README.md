@@ -116,7 +116,7 @@ https://github.com/eirisocherry/3d-point-depth-projection/assets/115040224/094be
 
 
 <details>
-<summary> >>> Link 2d layer to 3d point (useful for flares) </summary>
+<summary> >>> Link a 2d layer to a 3d point (useful for flares) </summary>
 <br>
 
 https://github.com/eirisocherry/3d-point-depth-projection/assets/115040224/f093c228-61f5-40a4-94c1-4842467c6880  
@@ -126,7 +126,7 @@ https://github.com/eirisocherry/3d-point-depth-projection/assets/115040224/f093c
 
 
 <details>
-<summary> >>> Make 3d layer always look at the camera  </summary>
+<summary> >>> Make a 3d layer always look at the camera  </summary>
 <br>
 
 https://github.com/eirisocherry/3d-point-depth-projection/assets/115040224/7460b84c-379d-428f-9b1a-8d32f42298d0  
@@ -136,7 +136,7 @@ https://github.com/eirisocherry/3d-point-depth-projection/assets/115040224/7460b
 
 
 <details>
-<summary> >>> Make 3d layer always look at the camera using only Y-rotation </summary>
+<summary> >>> Make a 3d layer always look at the camera using only Y-rotation </summary>
 <br>
 
 Y-rotation expression by [Dan Ebberts](https://www.motionscript.com/design-guide/auto-orient-y-only.html):  
