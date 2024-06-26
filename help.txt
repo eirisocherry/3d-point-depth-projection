@@ -1,4 +1,4 @@
-## Installation
+### Installation
 1. Download the tool: https://github.com/eirisocherry/3d-point-depth-projection/releases  
 2. Move the `3D Point Depth Projection` folder and `3D_Point_Depth_Projection.jsx` script to:  
 `C:\Program Files\Adobe\Adobe After Effects <version>\Support Files\Scripts\ScriptUI Panels`  
@@ -6,10 +6,5 @@
    `C:\Program Files\Adobe\Adobe After Effects CC <version>\Support Files\Plug-ins`  
 4. Restart After Effects.  
 
-## Source
+### Source
 https://github.com/eirisocherry/3d-point-depth-projection
-
-## Credits
-Script: `shy_rikki` (discord)  
-https://www.youtube.com/@shy_rikki  
-Plugin & expressions: `fadaaszhi` (discord)  

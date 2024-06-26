@@ -572,7 +572,7 @@ function DepthProjection(thisObj) {
                 new3dNull.threeDLayer = true;
                 new3dNull.transform.position.setValue(projectedPositionValue);
                 new3dNull.transform.orientation.setValue(projectedOrientationValue);
-                new3dNull.transform.scale.setValue([50, 50, 50]);
+                new3dNull.transform.scale.setValue([100, 100, 100]);
                 new3dNull.startTime = mainLayer.startTime;
                 new3dNull.inPoint = mainLayer.inPoint;
                 new3dNull.outPoint = mainLayer.outPoint;
@@ -608,7 +608,19 @@ function DepthProjection(thisObj) {
                 new3dNull.threeDLayer = true;
                 new3dNull.transform.position.setValue(projectedPositionValue);
                 new3dNull.transform.orientation.setValue(projectedOrientationValue);
-                new3dNull.transform.scale.setValue([50, 50, 50]);
+                new3dNull.transform.scale.setValue([100, 100, 100]);
+                new3dNull.transform.scale.expression =
+                    '// 3d scale imitation for 2d layers\n' +
+                    'var camera = thisComp.activeCamera;\n' +
+                    'var cameraPos = camera.position;\n' +
+                    'var layerPos = thisLayer.position;\n' +
+                    'var distance = length(cameraPos, layerPos);\n' +
+                    'var baseScale = value[0];\n' +
+                    'var cameraZoom = camera.zoom;\n' +
+                    'var scaleFactor = cameraZoom / distance;\n' +
+                    'var newScale = baseScale * scaleFactor;\n' +
+                    '[newScale, newScale, newScale];';
+
                 new3dNull.startTime = mainLayer.startTime;
                 new3dNull.inPoint = mainLayer.inPoint;
                 new3dNull.outPoint = mainLayer.outPoint;
@@ -620,8 +632,14 @@ function DepthProjection(thisObj) {
                 new2dNull.inPoint = mainLayer.inPoint;
                 new2dNull.outPoint = mainLayer.outPoint;
                 new2dNull.position.expression =
+                    '// 3d to 2d coordinates converter\n' +
                     'New3dNull = thisComp.layer(\"' + new3dNullName + '\");\n' +
                     'New3dNull.toComp(New3dNull.transform.anchorPoint);';
+                new2dNull.scale.expression =
+                    '// 3d to 2d scale\n' +
+                    'scale3D = thisComp.layer(\"' + new3dNullName + '\").transform.scale;\n' +
+                    '[scale3D[0], scale3D[1]];';
+
                 break;
 
             default:
