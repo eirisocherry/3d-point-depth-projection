@@ -75,6 +75,17 @@ When you project a 'Solid', it takes properties from 'Projected Solid' and color
 
 https://github.com/eirisocherry/3d-point-depth-projection/assets/115040224/094be86c-2ffa-4d01-bc7b-38713cfdc518  
 
+### 3D+2D null
+
+Link 2d layer to 3d point (useful for flares)  
+Make 3d layer always look at camera  
+Make 3d layer always look at camera using only Y-rotation  
+Y-rotation expression by [Dan Ebberts](https://www.motionscript.com/design-guide/auto-orient-y-only.html):  
+```
+delta = toWorld(anchorPoint) - thisComp.activeCamera.toWorld([0,0,0]);
+radiansToDegrees(Math.atan2(delta[0],delta[2]))
+```
+
 ### Link-Bake  
 If you want to adjust position & orientation of an object:  
 1. Press [⚙] button.  
