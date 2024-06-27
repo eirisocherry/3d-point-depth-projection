@@ -385,6 +385,10 @@ function DepthProjection(thisObj) {
         var count = mainLayerName.slice(21);
         var projectedLayerName = "Projected Solid" + (count > 1 ? " " + count : "");
         var projectionLayer = comp.layer(projectedLayerName);
+        if (!projectionLayer) {
+            alert("'" + projectedLayerName + "' not found. Please, make a new setup.");
+            return;
+        }
         var projectedPositionValue = projectionLayer.transform.position.valueAtTime(comp.time, false);
         var projectedOrientationValue = projectionLayer.transform.orientation.valueAtTime(comp.time, false);
         var projectedScaleValue = projectionLayer.transform.scale.valueAtTime(comp.time, false);
@@ -1228,33 +1232,6 @@ function DepthProjection(thisObj) {
         }
 
         return isArray ? result : result[inputNames[0]];
-    }
-
-    function uniqueIndexTWO(comp, inputNames) {
-        var isArray = inputNames && typeof inputNames.length === 'number' && typeof inputNames !== 'string';
-        if (!isArray) {
-            inputNames = [inputNames];
-        }
-
-        var uniqueNames = inputNames.slice();
-        var index = 1;
-        var nameExists;
-
-        do {
-            nameExists = false;
-            for (var i = 0; i < uniqueNames.length; i++) {
-                var currentName = uniqueNames[i] + (index > 1 ? " " + index : "");
-                if (comp.layers.byName(currentName)) {
-                    nameExists = true;
-                    break;
-                }
-            }
-            if (nameExists) {
-                index++;
-            }
-        } while (nameExists);
-
-        return index;
     }
 
     function uniqueIndexTwo(comp, inputName, currentLayer) {
