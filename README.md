@@ -8,6 +8,8 @@ Plugin & expressions: `fadaaszhi` (discord)
 Script: `shy_rikki` (discord)  
 https://www.youtube.com/@shy_rikki  
 
+
+
 ## Installation
 1. Download the tool: https://github.com/eirisocherry/3d-point-depth-projection/releases  
 2. Move the `3D Point Depth Projection` folder and `3D_Point_Depth_Projection.jsx` script to:  
@@ -16,8 +18,14 @@ https://www.youtube.com/@shy_rikki
    `C:\Program Files\Adobe\Adobe After Effects CC <version>\Support Files\Plug-ins`  
 4. Restart After Effects.  
 
+
+
 ## Usage
-### Setup
+
+<details>
+<summary> Setup </summary>
+<br>
+
 1. Open After Effects.  
 2. Go to `Window`, scroll down and open `3D_Point_Depth_Projection.jsx`.  
 3. The script panel will open. It's dockable.  
@@ -34,15 +42,21 @@ COD4: `4080`
 EXR Depth: set the same value you set in EXtractoR  
 8.  Project any objects you want.  
 
-> [!WARNING]
-> The script is heavy and may crash your After Effects, but don't worry!  
-> It automatically saves your project before doing any actions, so even if your AE will crash, you will not lose any of your progress.  
->  
-> 'Auto Orient' works only with high precision 16+ bit depth maps.  
+- The script is heavy and may crash your After Effects, but don't worry!  
+It automatically saves your project before doing any actions, so even if your AE will crash, you will not lose any of your progress.  
+- 'Auto Orient' works only with EXR depth maps.  
 
 https://github.com/eirisocherry/3d-point-depth-projection/assets/115040224/99b23a49-3bc6-40df-b8ae-975871f2bdc4  
 
-### SimpleLight
+<br>
+</details>
+
+
+
+<details>
+<summary> SimpleLight </summary>
+<br>
+
 When you project 'SimpleLight' it makes a dublicate of your 'Depth for Projection' layer and applies 'SimpleLight' plugin to it  
 
 `[x] SL` SimpleLight settings:  
@@ -64,18 +78,88 @@ It uses SimpleLight `[x] SL` as a luma mask
 
 https://github.com/eirisocherry/3d-point-depth-projection/assets/115040224/cbfc4cf9-eada-4d95-9cf7-0d9be496b035
 
-### Keyframes
+<br>
+</details>
+
+
+
+<details>
+<summary> Keyframes </summary>
+<br>
+
 When you project 'Keyframes', they are being stored in the 'Collected Keyframes' group  
 
 https://github.com/eirisocherry/3d-point-depth-projection/assets/115040224/78707934-496d-41d2-98cb-9f9d96279cc5  
 
-### Solid
+<br>
+</details>
+
+
+
+<details>
+<summary> Solid </summary>
+<br>
+
 When you project a 'Solid', it takes properties from 'Projected Solid' and color from 'Projection settings'  
 `Ctrl + Shift + Y` to open 'Solid' settings  
 
 https://github.com/eirisocherry/3d-point-depth-projection/assets/115040224/094be86c-2ffa-4d01-bc7b-38713cfdc518  
 
-### Link-Bake  
+<br>
+</details>
+
+
+
+<details>
+<summary> 3D+2D null </summary>
+<br>
+
+
+<details>
+<summary> >>> Link a 2d layer to a 3d point (useful for flares) </summary>
+<br>
+
+https://github.com/eirisocherry/3d-point-depth-projection/assets/115040224/f093c228-61f5-40a4-94c1-4842467c6880  
+
+<br>
+</details>
+
+
+<details>
+<summary> >>> Make a 3d layer always look at the camera  </summary>
+<br>
+
+https://github.com/eirisocherry/3d-point-depth-projection/assets/115040224/7460b84c-379d-428f-9b1a-8d32f42298d0  
+
+<br>
+</details>
+
+
+<details>
+<summary> >>> Make a 3d layer always look at the camera using only Y-rotation </summary>
+<br>
+
+Auto-orient Y-rotation only expression by [Dan Ebberts](https://www.motionscript.com/design-guide/auto-orient-y-only.html):  
+```
+delta = toWorld(anchorPoint) - thisComp.activeCamera.toWorld([0,0,0]);
+radiansToDegrees(Math.atan2(delta[0],delta[2]))
+```
+
+https://github.com/eirisocherry/3d-point-depth-projection/assets/115040224/e190e9c3-2070-4db1-8051-539cdf0e682b  
+
+<br>
+</details>
+
+
+<br>
+</details>
+
+
+
+<details>
+<summary> Link-Bake </summary>
+<br>
+
 If you want to adjust position & orientation of an object:  
 1. Press [⚙] button.  
 2. Select 'Depth for Projection' and layers you want to make controllers for.  
@@ -84,7 +168,15 @@ If you want to adjust position & orientation of an object:
 
 https://github.com/eirisocherry/3d-point-depth-projection/assets/115040224/50e2767d-9676-4130-8c9f-919d189ae79b  
 
-### Merge Depth
+<br>
+</details>
+
+
+
+<details>
+<summary> Merge Depth </summary>
+<br>
+
 To merge depth layers, select them and press [Merge Depth] button.  
 It will create a 'Merged Depth' solid with adjustment layer which uses 'Merged Depth' solid as a luma mask.  
 
@@ -92,5 +184,5 @@ Since 'Merged Depth' uses links to the depth layers you've selected, all the cha
 
 https://github.com/eirisocherry/3d-point-depth-projection/assets/115040224/fe1b7bed-5818-46f4-a24a-f0c6a98471ea  
 
-## Support
-If you have any questions or found a bug, please create an issue in this repository or dm me in discord: `shy_rikki`  
+<br>
+</details>
