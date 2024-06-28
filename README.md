@@ -182,7 +182,7 @@ It will create a 'Merged Depth' solid with adjustment layer which uses 'Merged D
 
 Since 'Merged Depth' uses links to the depth layers you've selected, all the changes you make for them will be automatically applied to 'Merged Depth'.  
 
-https://github.com/eirisocherry/3d-point-depth-projection/assets/115040224/fe1b7bed-5818-46f4-a24a-f0c6a98471ea  
+https://github.com/eirisocherry/3d-point-depth-projection/assets/115040224/b4f0f5b5-b004-4d68-b54d-444f748b3a6e  
 
 <br>
 </details>
