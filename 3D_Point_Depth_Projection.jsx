@@ -1081,6 +1081,24 @@ function DepthProjection(thisObj) {
             return;
         }
 
+        // Find "SL Adj" layers
+        var slLayers = [];
+        for (var i = 0; i < selectedLayersNumber; i++) {
+            var layer = selectedLayers[i];
+            if (layer.name.indexOf("SL") !== -1) {
+                var adjustmentName = layer.name + " Adj";
+                slLayers.push(adjustmentName);
+            }
+        }
+
+        // Disable "SL Adj" layers
+        for (var i = 0; i < slLayers.length; i++) {
+            var layer = comp.layer(slLayers[i]);
+            if (layer) {
+                layer.enabled = false;
+            }
+        }
+
         // Generate unique index
         var mergedNames = uniqueIndex(comp, ["Merged Depth", "Merged Adj"]);
         var adjustmentLayerName = mergedNames["Merged Adj"];
