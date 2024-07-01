@@ -10,7 +10,7 @@ function DepthProjection(thisObj) {
 
     // About
     var name = "3D Point Depth Projection";
-    var version = "1.0";
+    var version = "1.1";
 
     // Build UI
     var dropdownMenuSelection;
@@ -231,7 +231,9 @@ function DepthProjection(thisObj) {
         projectedLayer.threeDLayer = true;
         projectedLayer.transform.scale.setValue([100, 100, 100]);
         projectedLayer.transform.opacity.setValue(60);
-        projectedLayer.property("ADBE Material Options Group").property("ADBE Accepts Lights").setValue(0);
+        if (comp.renderer == "ADBE Advanced 3d") {
+            projectedLayer.property("ADBE Material Options Group").property("ADBE Accepts Lights").setValue(0);
+        }
         projectedLayer.startTime = mainLayer.startTime;
         projectedLayer.inPoint = mainLayer.inPoint;
         projectedLayer.outPoint = mainLayer.outPoint;
@@ -395,7 +397,9 @@ function DepthProjection(thisObj) {
         var projectedOpacityValue = projectionLayer.transform.opacity.valueAtTime(comp.time, false);
         var projectedLayerWidth = projectionLayer.width;
         var projectedLayerHeight = projectionLayer.height;
-        var projectedAcceptsLights = projectionLayer.property("ADBE Material Options Group").property("ADBE Accepts Lights").value;
+        if (comp.renderer == "ADBE Advanced 3d") {
+            var projectedAcceptsLights = projectionLayer.property("ADBE Material Options Group").property("ADBE Accepts Lights").value;
+        }
         var mainLayerEffect = mainLayer.property("ADBE Effect Parade").property("3D Point Depth Projection");
         var randomColorValue = mainLayerEffect.property("Random color").value;
         var ifRandomIsDisabledValue = mainLayerEffect.property("If random is disabled").value;
@@ -563,7 +567,9 @@ function DepthProjection(thisObj) {
                 newSolid.transform.orientation.setValue(projectedOrientationValue);
                 newSolid.transform.scale.setValue(projectedScaleValue);
                 newSolid.transform.opacity.setValue(projectedOpacityValue);
-                newSolid.property("ADBE Material Options Group").property("ADBE Accepts Lights").setValue(projectedAcceptsLights);
+                if (comp.renderer == "ADBE Advanced 3d") {
+                    newSolid.property("ADBE Material Options Group").property("ADBE Accepts Lights").setValue(projectedAcceptsLights);
+                }
                 newSolid.startTime = mainLayer.startTime;
                 newSolid.inPoint = mainLayer.inPoint;
                 newSolid.outPoint = mainLayer.outPoint;
