@@ -38,6 +38,7 @@ COD4: https://github.com/gmzorz/MVMAETools/blob/main/Support%20Files/Scripts/Scr
 **'Black is Near'** check it if a black color is near on your depth map, uncheck if it's not.  
 **'Far'** the farthest depth point value:  
 CSGO (if you use my cfgs): `4096`  
+CS2 (if you use my cfgs): not gonna work properly, because cs2 depth is logarithmic (simplelight needs linear depth)  
 COD4: `4080`  
 EXR Depth: set the same value you set in EXtractoR  
 8.  Project any objects you want.  
