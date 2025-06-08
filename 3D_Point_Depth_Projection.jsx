@@ -10,7 +10,7 @@ function DepthProjection(thisObj) {
 
     // About
     var name = "3D Point Depth Projection";
-    var version = "1.1";
+    var version = "v2.0";
 
     // Build UI
     var dropdownMenuSelection;
@@ -31,12 +31,12 @@ function DepthProjection(thisObj) {
                 setupGroup: Group\
                 {\
                     orientation:'column', alignChildren:['fill','center'],\
-                    staticText: StaticText{text: '3D Point Depth Projection', alignment:['center','center']}\
+                    staticText: StaticText{text: '3D Point Depth Projection " + version + "', alignment:['center','center']}\
                     projectGroup: Group\
                     {\
                         orientation:'row', alignChildren:['fill','center'],\
                         projectButton: Button{text: 'Project'},\
-                        typeDropdown: DropDownList{properties:{items:['Point Light', 'Spot Light', 'SimpleLight', 'Keyframes', 'Solid', '3D Null', '3D+2D Null']}},\
+                        typeDropdown: DropDownList{properties:{items:['Point Light', 'Spot Light', 'SimpleLight', 'Position Matte', 'Keyframes', 'Solid', '3D Null', '3D+2D Null']}},\
                     },\
                     settingsGroup: Group\
                     {\
@@ -445,7 +445,7 @@ function DepthProjection(thisObj) {
                 }
 
                 var uniqueIndexForSL = (function (comp) {
-                    var baseNames = ["----[1] SL Light----", "[1] SL", "[1] SL Adj"];
+                    var baseNames = ["----[1] PM Light----", "[1] PM", "[1] PM Adj", "----[1] SL Light----", "[1] SL", "[1] SL Adj"];
                     var index = 1;
                     var nameExists;
 
@@ -542,6 +542,127 @@ function DepthProjection(thisObj) {
                     'lightLayer = thisComp.layer("' + newLightName + '");\n' +
                     'thisComp.activeCamera.fromWorld(lightLayer.transform.position);';
                 simpleLightEffect.property("Light Range").setValue(lightRangeValue);
+                break;
+            
+            case 'Position Matte':
+                // Check if plugin is installed
+                try {
+                    var positionMatteEffect = mainLayer.Effects.addProperty("Position Matte");
+                    positionMatteEffect.remove();
+                } catch (e) {
+                    alert("Position Matte plugin is not installed.");
+                    break;
+                }
+
+                // Generate unique index
+                var uniqueIndexForPM = (function (comp) {
+                    var baseNames = ["----[1] PM Light----", "[1] PM", "[1] PM Adj", "----[1] SL Light----", "[1] SL", "[1] SL Adj"];
+                    var index = 1;
+                    var nameExists;
+
+                    do {
+                        nameExists = false;
+                        for (var i = 0; i < baseNames.length; i++) {
+                            var currentName = baseNames[i].replace("[1]", "[" + index + "]");
+                            if (comp.layers.byName(currentName)) {
+                                nameExists = true;
+                                break;
+                            }
+                        }
+                        if (nameExists) {
+                            index++;
+                        }
+                    } while (nameExists);
+
+                    return index;
+                })(comp);
+                var pmLayerName = "[" + uniqueIndexForPM + "] PM";
+                var newLightName = "----[" + uniqueIndexForPM + "] PM Light----";
+                var adjustmentLayerName = "[" + uniqueIndexForPM + "] PM Adj";
+                do {
+                    var labelColor = Math.round(getRandomNumber(1, 16));
+                } while (labelColor === 14);
+
+                // Add adjustment layer
+                var newAdjustmentLayer = comp.layers.addSolid([1, 1, 1], adjustmentLayerName, comp.width, comp.height, 1);
+                newAdjustmentLayer.adjustmentLayer = true;
+                newAdjustmentLayer.name = adjustmentLayerName;
+                newAdjustmentLayer.startTime = mainLayer.startTime;
+                newAdjustmentLayer.inPoint = mainLayer.inPoint;
+                newAdjustmentLayer.outPoint = mainLayer.outPoint;
+                newAdjustmentLayer.Effects.addProperty("CC Toner");
+                newAdjustmentLayer.Effects("CC Toner").property("CC Toner-0002").setValue(randomColorValue ? [getRandomNumber(0.5, 1), getRandomNumber(0.5, 1), getRandomNumber(0.5, 1)] : ifRandomIsDisabledValue); //midtones
+                newAdjustmentLayer.Effects("CC Toner").property("CC Toner-0004").setValue(0.5); //blend w original
+                newAdjustmentLayer.Effects.addProperty("ADBE Exposure");
+                newAdjustmentLayer.Effects("ADBE Exposure").property("ADBE Exposure-0003").setValue(exposureValue); //exposure
+                newAdjustmentLayer.label = labelColor;
+
+                // Read depth properties
+                var mainLayerEffect = mainLayer.property("ADBE Effect Parade").property("3D Point Depth Projection");
+                var blackIsNearValue = mainLayerEffect.property("Black is Near").value;
+                var farValue = mainLayerEffect.property("Far").value;
+
+                // Add pmLayer
+                var pmLayer = mainLayer.duplicate();
+                pmLayer.name = pmLayerName;
+                pmLayer.moveToBeginning();
+                pmLayer.enabled = false;
+                pmLayer.property("ADBE Effect Parade").property("3D Point Depth Projection").remove();
+                pmLayer.label = labelColor;
+
+                // Set track matte depends on AE version 
+                if (typeof newAdjustmentLayer.trackMatteType !== "undefined" && typeof newAdjustmentLayer.trackMatteLayer !== "undefined") {
+                    newAdjustmentLayer.setTrackMatte(pmLayer, TrackMatteType.LUMA);
+                } else {
+                    newAdjustmentLayer.trackMatteType = TrackMatteType.LUMA;
+                }
+
+                // Add point light
+                var newLight = comp.layers.addLight(newLightName, [comp.width / 2, comp.height / 2]);
+                newLight.lightType = LightType.POINT;
+                newLight.lightOption.intensity.setValue(100);
+                newLight.lightOption.color.expression =
+                    'var ccTonerEffect;\n' +
+                    'try {\n' +
+                    'ccTonerEffect = thisComp.layer("' + adjustmentLayerName + '").effect("CC Toner")("Midtones");\n' +
+                    '} catch (e) {\n' +
+                    '   ccTonerEffect = null;\n' +
+                    '}\n' +
+                    '\n' +
+                    'if (ccTonerEffect != null) {\n' +
+                    '    ccTonerEffect;\n' +
+                    '} else {\n' +
+                    '    [1, 1, 1, 1];\n' +
+                    '};'
+                newLight.transform.position.setValue(projectedPositionValue);
+                newLight.startTime = mainLayer.startTime;
+                newLight.inPoint = mainLayer.inPoint;
+                newLight.outPoint = mainLayer.outPoint;
+                newLight.label = labelColor;
+
+                // Add "tl maths" effect
+                deselectAll(comp);
+                pmLayer.selected = true;
+                var tlMathEffect = applyDepthToPosition(pmLayer);
+                if (tlMathEffect === 0) {
+                    return;
+                } else if (tlMathEffect === -1) {
+                    alert("r-depth2position.ffx is found but it didn't apply any effect.")
+                }
+                tlMathEffect.property("tl_maths-0030").setValue(blackIsNearValue); //black is near
+                tlMathEffect.property("tl_maths-0042").setValue([farValue, 0, 0]); //far
+
+                // Add "Position Matte" effect
+                var pmEffect = pmLayer.Effects.addProperty("Position Matte");
+                pmEffect.property("Position Matte-0003").expression =
+                'lightLayer = thisComp.layer("' + newLightName + '");\n' +
+                'lightLayer.transform.position;'; // position
+                pmEffect.property("Position Matte-0001").setValue(3); // mode
+                pmEffect.property("Position Matte-0013").setValue(100); //radius
+                pmEffect.property("Position Matte-0019").setValue(100); //feater
+
+                app.executeCommand(2771); // Uncollapse layer
+                app.executeCommand(2771); // Collapse layer
                 break;
 
             case 'Keyframes':
@@ -1207,6 +1328,30 @@ function DepthProjection(thisObj) {
         var ffxFile = new File(appFolderPath + "/Support Files/Scripts/ScriptUI Panels/3D Point Depth Projection/Blend.ffx");
         if (!ffxFile.exists) {
             alert("Blend.ffx not found. Please ensure the script is installed correctly.");
+            return 0;
+        }
+
+        // Apply preset and return effect
+        var layer = mainLayer;
+        var effects = layer.property("ADBE Effect Parade");
+        var numEffectsBefore = effects.numProperties;
+        layer.applyPreset(ffxFile);
+        var numEffectsAfter = effects.numProperties;
+        for (var i = numEffectsBefore + 1; i <= numEffectsAfter; i++) {
+            var effect = effects.property(i);
+            if (effect) {
+                return effect;
+            }
+        }
+        return -1;
+    }
+
+    function applyDepthToPosition(mainLayer) {
+        // Check if preset exists
+        var appFolderPath = Folder.appPackage.parent.fsName; // Path to AE folder 
+        var ffxFile = new File(appFolderPath + "/Support Files/Scripts/ScriptUI Panels/3D Point Depth Projection/r-depth2position.ffx");
+        if (!ffxFile.exists) {
+            alert("r-depth2position.ffx not found. Please ensure the script is installed correctly.");
             return 0;
         }
 
