@@ -1,12 +1,6 @@
 # 3D Point Depth Projection
-
-Is an After Effects tool that allows you to quickly extract 3d coordinates and place any object to it.  
-Requirement: Depth map and 3d camera data.  
-
-## Credits
-Plugin & expressions: `fadaaszhi` (discord)  
-Script: `shy_rikki` (discord)  
-https://www.youtube.com/@shy_rikki  
+An After Effects tool that allows you to quickly extract 3d coordinates and place any object to it  
+Requirement: Depth map and 3d camera data  
 
 
 
@@ -16,7 +10,10 @@ https://www.youtube.com/@shy_rikki
 `C:\Program Files\Adobe\Adobe After Effects <version>\Support Files\Scripts\ScriptUI Panels`  
 3. Move the `SimpleLight.aex` plugin to:  
    `C:\Program Files\Adobe\Adobe After Effects CC <version>\Support Files\Plug-ins`  
-4. Restart After Effects.  
+4. [Optional] If you want to use Position Matte lights:  
+4.1. Install "tl_maths" plugin: https://github.com/crazylafo/AE_tl_math  
+4.2. Install "Position Matte" plugin: https://t.me/ancient_storage/145  
+5. Restart After Effects.  
 
 
 
@@ -82,6 +79,33 @@ https://github.com/eirisocherry/3d-point-depth-projection/assets/115040224/cbfc4
 <br>
 </details>
 
+
+
+<details>
+<summary> Position Matte </summary>
+<br>
+
+When you project 'Position Matte' it makes a dublicate of your 'Depth for Projection' layer and applies 'tl_maths' + 'Position Matte' plugins to it  
+**tl_maths** converts 'depth pass + camera' to 'position pass' via my glsl code  
+**Position Matte** takes 'position pass' as input and allows you to add different types of lights (circle, rectangular, rays etc...)  
+
+`[x] PM` Position Matte settings:  
+**'Black is Near'** takes value from '3D Point Depth Projection' effect  
+**'Far'** takes value from '3D Point Depth Projection' effect  
+**'Position'** links to a point light `----[x] PM Light----`  
+
+`[x] PM Adj` Adjustment Layer settings:  
+It uses Position Matte `[x] PM` as a luma mask  
+**'CC Toner'** allows you change the color of the light  
+**'Exposure'** allows you to change the brightness of the light  
+
+`----[x] PM Light----` Point Light settings:  
+'Color' links to the 'CC toner' effect, which is applied to `[x] PM Adj`  
+
+https://github.com/user-attachments/assets/02b102c8-a803-46ec-b349-19cda42cd62d  
+
+<br>
+</details>
 
 
 <details>
@@ -187,3 +211,10 @@ https://github.com/eirisocherry/3d-point-depth-projection/assets/115040224/b4f0f
 
 <br>
 </details>
+
+
+
+## Credits
+Plugin & expressions: `fadaaszhi` (discord)  
+Script: `shy_rikki` (discord)  
+https://www.youtube.com/@shy_rikki  
