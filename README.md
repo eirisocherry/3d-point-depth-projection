@@ -10,10 +10,7 @@ Requirement: Depth map and 3d camera data
 `C:\Program Files\Adobe\Adobe After Effects <version>\Support Files\Scripts\ScriptUI Panels`  
 3. Move the `SimpleLight.aex` plugin to:  
    `C:\Program Files\Adobe\Adobe After Effects CC <version>\Support Files\Plug-ins`  
-4. [Optional] If you want to use Position Matte lights:  
-4.1. Install "tl_maths" plugin: https://github.com/crazylafo/AE_tl_math  
-4.2. Install "Position Matte" plugin: https://t.me/ancient_storage/145  
-5. Restart After Effects.  
+4. Restart After Effects.  
 
 
 
