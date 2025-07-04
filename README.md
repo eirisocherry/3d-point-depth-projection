@@ -79,33 +79,6 @@ https://github.com/eirisocherry/3d-point-depth-projection/assets/115040224/cbfc4
 
 
 <details>
-<summary> Position Matte </summary>
-<br>
-
-When you project 'Position Matte' it makes a dublicate of your 'Depth for Projection' layer and applies 'tl_maths' + 'Position Matte' plugins to it  
-**tl_maths** converts 'depth pass + camera' to 'position pass' via my glsl code  
-**Position Matte** takes 'position pass' as input and allows you to add different types of lights (circle, rectangular, rays etc...)  
-
-`[x] PM` Position Matte settings:  
-**'Black is Near'** takes value from '3D Point Depth Projection' effect  
-**'Far'** takes value from '3D Point Depth Projection' effect  
-**'Position'** links to a point light `----[x] PM Light----`  
-
-`[x] PM Adj` Adjustment Layer settings:  
-It uses Position Matte `[x] PM` as a luma mask  
-**'CC Toner'** allows you change the color of the light  
-**'Exposure'** allows you to change the brightness of the light  
-
-`----[x] PM Light----` Point Light settings:  
-'Color' links to the 'CC toner' effect, which is applied to `[x] PM Adj`  
-
-https://github.com/user-attachments/assets/02b102c8-a803-46ec-b349-19cda42cd62d  
-
-<br>
-</details>
-
-
-<details>
 <summary> Keyframes </summary>
 <br>
 
